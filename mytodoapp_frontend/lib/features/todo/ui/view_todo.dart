@@ -1,16 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mytodoapp_frontend/contants/colors.dart';
 
-class AddTodo extends StatefulWidget {
-  const AddTodo({super.key});
-
-  @override
-  State<AddTodo> createState() => _AddTodoState();
-}
-
-class _AddTodoState extends State<AddTodo> {
-  final TextEditingController _titleController = TextEditingController();
-  final TextEditingController _descriptionController = TextEditingController();
+class ViewTodo extends StatelessWidget {
+  const ViewTodo({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +15,7 @@ class _AddTodoState extends State<AddTodo> {
         toolbarHeight: 120,
         centerTitle: true,
         title: Text(
-          'Add Task',
+          'View Task',
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w600,
@@ -79,25 +71,15 @@ class _AddTodoState extends State<AddTodo> {
               ),
             ),
             SizedBox(
-              height: 5,
+              height: 10,
             ),
-            TextField(
-              controller: _titleController,
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(
-                    color: AppColors.textFieldBorderColor,
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(
-                    color: AppColors.textFieldBorderColor,
-                  ),
-                ),
+            Text(
+              'Routine Exercise',
+              style: TextStyle(
+                color: AppColors.fontColorBlack,
+                fontWeight: FontWeight.w400,
+                fontFamily: 'Poppins',
+                fontSize: 14,
               ),
             ),
             SizedBox(
@@ -113,49 +95,15 @@ class _AddTodoState extends State<AddTodo> {
               ),
             ),
             SizedBox(
-              height: 5,
+              height: 10,
             ),
-            TextField(
-              minLines: 5,
-              maxLines: 8,
-              controller: _descriptionController,
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(
-                    color: AppColors.textFieldBorderColor,
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(
-                    color: AppColors.textFieldBorderColor,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 80,
-            ),
-            Container(
-              width: screenWidth,
-              height: 55,
-              decoration: BoxDecoration(
-                color: AppColors.accentColor,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Center(
-                child: Text(
-                  'Create Task',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w600,
-                    fontSize: 15,
-                  ),
-                ),
+            Text(
+              'Routine exercise every morning with sports, either running, or swimming, or jogging, or badminton, futsal, or similar sports. Work out to form a better body and live a healthier life. hopefully all this can be achieved.',
+              style: TextStyle(
+                color: AppColors.fontColorBlack,
+                fontWeight: FontWeight.w400,
+                fontFamily: 'Poppins',
+                fontSize: 14,
               ),
             ),
           ],
