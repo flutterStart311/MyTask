@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mytodoapp_frontend/contants/colors.dart';
+import 'package:mytodoapp_frontend/models/todo_model.dart';
 
 class ViewTodo extends StatelessWidget {
-  const ViewTodo({super.key});
+  final TodoModel todoModel;
+  const ViewTodo({super.key, required this.todoModel});
 
   @override
   Widget build(BuildContext context) {
@@ -27,19 +29,24 @@ class ViewTodo extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              height: 45,
-              width: 45,
-              margin: EdgeInsets.only(left: 15),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Center(
-                child: Icon(
-                  Icons.arrow_back,
-                  size: 20,
-                  color: AppColors.accentColor,
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Container(
+                height: 45,
+                width: 45,
+                margin: EdgeInsets.only(left: 15),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Center(
+                  child: Icon(
+                    Icons.arrow_back,
+                    size: 20,
+                    color: AppColors.accentColor,
+                  ),
                 ),
               ),
             ),
@@ -74,7 +81,7 @@ class ViewTodo extends StatelessWidget {
               height: 10,
             ),
             Text(
-              'Routine Exercise',
+              todoModel.title,
               style: TextStyle(
                 color: AppColors.fontColorBlack,
                 fontWeight: FontWeight.w400,
@@ -98,7 +105,7 @@ class ViewTodo extends StatelessWidget {
               height: 10,
             ),
             Text(
-              'Routine exercise every morning with sports, either running, or swimming, or jogging, or badminton, futsal, or similar sports. Work out to form a better body and live a healthier life. hopefully all this can be achieved.',
+              todoModel.description,
               style: TextStyle(
                 color: AppColors.fontColorBlack,
                 fontWeight: FontWeight.w400,
