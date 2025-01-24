@@ -9,7 +9,8 @@ import 'package:mytodoapp_frontend/widgets/custom_button.dart';
 import 'package:mytodoapp_frontend/widgets/custom_textfield.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  final String fcmToken;
+  const LoginScreen({super.key, required this.fcmToken});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -162,6 +163,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       SignInEvent(
                                         email: _emailController.text,
                                         password: _passwordController.text,
+                                        fcmToken: widget.fcmToken,
                                       ),
                                     );
                                   },
@@ -192,7 +194,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => SignUpScreen(),
+                                      builder: (context) => SignUpScreen(
+                                        fcmToken: widget.fcmToken,
+                                      ),
                                     ),
                                   );
                                 },

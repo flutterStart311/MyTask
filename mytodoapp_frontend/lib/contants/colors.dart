@@ -24,4 +24,7 @@ class AppColors {
 
   //Progress Bar BG Color
   static const Color progressBarBGColor = Color.fromARGB(255, 0, 71, 151);
+
+  //Read Color
+  static const Color readTileColor = Color.fromARGB(255, 241, 247, 254);
 }

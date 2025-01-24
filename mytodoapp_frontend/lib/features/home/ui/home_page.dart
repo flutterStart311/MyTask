@@ -5,6 +5,7 @@ import 'package:mytodoapp_frontend/contants/colors.dart';
 import 'package:mytodoapp_frontend/features/todo/bloc/todo_bloc.dart';
 import 'package:mytodoapp_frontend/features/todo/ui/add_todo.dart';
 import 'package:mytodoapp_frontend/features/todo/ui/edit_todo.dart';
+import 'package:mytodoapp_frontend/features/notification/ui/notification_screen.dart';
 import 'package:mytodoapp_frontend/features/todo/ui/view_todo.dart';
 import 'package:mytodoapp_frontend/models/todo_model.dart';
 import 'package:mytodoapp_frontend/models/user_model.dart';
@@ -80,7 +81,17 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Spacer(),
-            Image.asset('assets/images/notification.png'),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NotificationScreen(),
+                  ),
+                );
+              },
+              child: Image.asset('assets/images/notification.png'),
+            ),
           ],
         ),
       ),

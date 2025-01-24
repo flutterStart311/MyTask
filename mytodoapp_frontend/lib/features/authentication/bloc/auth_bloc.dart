@@ -38,7 +38,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   FutureOr<void> signInEvent(SignInEvent event, Emitter<AuthState> emit) async {
     try {
       emit(SignInProgressState());
-      await authServices.signInUser(event.email, event.password);
+      await authServices.signInUser(
+          event.email, event.password, event.fcmToken);
       emit(SignInSuccessState());
     } catch (e) {
       emit(SignInErrorState(error: e.toString()));
