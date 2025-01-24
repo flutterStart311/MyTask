@@ -1,16 +1,52 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:mytodoapp_frontend/firebase_options.dart';
+import 'package:mytodoapp_frontend/services/notification_services.dart';
 import 'package:mytodoapp_frontend/splash_screen.dart';
+
+Future _handleBackgroundMessage(RemoteMessage message) async {
+  if (message.notification != null) {
+    print('Available Background Notification');
+  }
+}
+
+String? token = '';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const MyApp());
+
+  NotificationServices().requestPermissions();
+  NotificationServices().initNotifications();
+
+  await FirebaseMessaging.instance.getToken().then((value) {
+    print('Notification Token: $value');
+    token = value;
+  });
+
+  FirebaseMessaging.onMessage.listen((event) async {
+    NotificationServices().showNotification(event);
+    await NotificationServices().saveNotificationFirebase(
+        event.notification!.title, event.notification!.body);
+  });
+
+  FirebaseMessaging.onBackgroundMessage(_handleBackgroundMessage);
+
+  FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+    if (message.notification != null) {
+      print(message.notification);
+    }
+  });
+
+  runApp(MyApp(
+    notificationToken: token!,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String notificationToken;
+  const MyApp({super.key, required this.notificationToken});
 
   // This widget is the root of your application.
   @override
@@ -37,7 +73,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: SplashScreen(),
+      home: SplashScreen(
+        fcmToken: notificationToken,
+      ),
     );
   }
 }
