@@ -226,8 +226,10 @@ class _HomePageState extends State<HomePage> {
                                     height: 5,
                                   ),
                                   LinearProgressIndicator(
-                                    value: (allCompletedTodos.length /
-                                        allTodos.length),
+                                    value: allTodos.isEmpty
+                                        ? 0.0
+                                        : (allCompletedTodos.length /
+                                            allTodos.length),
                                     valueColor:
                                         AlwaysStoppedAnimation(Colors.white),
                                     backgroundColor:
